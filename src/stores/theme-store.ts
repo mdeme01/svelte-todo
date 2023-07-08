@@ -25,7 +25,11 @@ type Themes =
 	| 'gray'
 	| 'slate';
 
-const initialColorTheme = browser ? (localStorage.getItem('colorPalette') as Themes) : 'default';
+const initialColorTheme = browser
+	? localStorage.getItem('colorPalette')
+		? (localStorage.getItem('colorPalette') as Themes)
+		: 'default'
+	: 'default';
 const initialDarkTheme = browser ? localStorage.getItem('darkMode') === 'dark' : false;
 
 export const colorTheme = writable<Themes>(initialColorTheme);
